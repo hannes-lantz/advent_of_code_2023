@@ -1,12 +1,14 @@
 from pathlib import Path
 txt = Path('input.txt').read_text()
+list = txt.split('\n')
 
-items = txt.replace('\n', ' ').split("  ")
-max = 0
-for i in items:
-    bag = i.split(" ")
-    res = [eval(j) for j in bag]
-    if max < sum(res):
-        max = sum(res)
+score = 0
+for line in list:
+    numbers = [(pos, num) for pos, num in enumerate(line) if num.isdigit()]
+    first=(numbers[0][1])
+    last=(numbers[len(numbers)-1][1])
+    sum=first+last
+    score= score+int(sum)
+    print(score)
 
-print("Highest score is: ", max)
+print("sum: ", score)
